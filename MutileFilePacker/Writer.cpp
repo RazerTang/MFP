@@ -15,6 +15,7 @@
 #include "Writer.h"
 #include "Constant.h"
 #include <assert.h>
+#include <zlib.h>
 
 static bool IsDir(const char *path){
      DIR *dir;
@@ -32,6 +33,52 @@ Writer::Writer():m_bFd(nullptr){
 Writer::~Writer(){
     
 }
+
+bool Writer::compress(const char * DestName,const char *SrcName)
+{
+    FILE * fp_in = NULL;int len = 0;char buf[16384];
+    
+    bool re = true;
+    
+    if( NULL == (fp_in = fopen(SrcName,"rb")))
+    {
+        return false;
+    }
+    
+    /////////////////////////////////////////////
+    gzFile out = gzopen(DestName,"wb6f");
+    
+    if(out == NULL)
+    {
+        return false;
+    }
+    
+    for(;;)
+    {
+        len = fread(buf,1,sizeof(buf),fp_in);
+        
+        if(ferror(fp_in))
+        {
+            re = false;
+            break;
+        }
+        
+        if(len == 0) break;
+        
+        if(gzwrite(out, buf, (unsigned)len) != len)
+        {
+            re = false;
+        }
+    }
+    
+    gzclose(out);
+    
+    fclose(fp_in);
+    
+    return re;
+}
+
+
 bool Writer::saveTo(const char *fromFileFolder,const char *toFileName){
     if (!m_bFd) {
         m_bFd = fopen(toFileName, "wb+");
@@ -103,6 +150,9 @@ bool Writer::saveTo(const char *fromFileFolder,const char *toFileName){
     fclose(m_bFd);
     m_bFd=nullptr;
     //SIGABRIT 可能开的buff不够大
+   
+    std::string zipFileName = std::string(toFileName) +".zip";
+    assert(this->compress(zipFileName.c_str(),toFileName));
     return true;
     
 }
@@ -125,7 +175,10 @@ void Writer::indexFiles(const char *fromFileFolder,const char *relativePath){
     char fileName[KFILENAME_LEN];
     while ((ptr=readdir(dir)) != NULL)
     {
-        if (strcmp(ptr->d_name, ".") ==0 || strcmp(ptr->d_name, "..")==0 || strcmp(ptr->d_name, ".DS_Store")==0) {
+        if (strcmp(ptr->d_name, ".") ==0 ||
+            strcmp(ptr->d_name, "..")==0 ||
+            strcmp(ptr->d_name, ".DS_Store")==0 ||
+            strcmp(ptr->d_name, ".git")==0) {
             continue;
         }
         if(strcmp(relativePath, "")==0){

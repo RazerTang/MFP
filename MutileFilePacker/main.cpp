@@ -14,7 +14,7 @@ int main(int argc, const char * argv[]) {
     // insert code here...
     std::cout << "Hello, World!\n";
     Writer *wr = new Writer();
-    wr->saveTo("/Users/Razer/Desktop/shells", "/Users/Razer/Desktop/aa.bin");
+    wr->saveTo("/Users/regina/Documents/MFP/MutileFilePacker/Resources", "/Users/regina/Documents/MFP/data.bin");
     delete wr;
 //     int size = sizeof(long);
 //    Reader *read = new Reader();

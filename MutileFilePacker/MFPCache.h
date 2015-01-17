@@ -12,7 +12,8 @@
 #include <stdio.h>
 #include "cocos2d.h"
 #include "Constant.h"
-
+#include <libxml2/libxml/parser.h>
+#include <libxml2/libxml/tree.h>
 
 class MFPCache: public cocos2d::Object{
 private:
@@ -24,7 +25,13 @@ protected:
     
     bool init();
     
-    void parseXml(char *data,uint64_t size);
+    void parseXml(char *data,uint64_t size,cocos2d::ValueMap &dict);
+    
+    cocos2d::ValueMap parseDict(xmlNodePtr node);
+    
+    const char *parseKey(xmlNodePtr node);
+    
+    bool unCompress(const char * destName,const char *srcName);
     
 public:
     static MFPCache* getInstance(void);
@@ -39,6 +46,12 @@ public:
     
     //add .plist .png to cache
     void addPlist(const char *file);
+    
+    //add music
+    void addBackground(const char *file){}
+    
+    //add effect
+    void addEffect(const char *file){}
     
     //get raw data
     char *getBlockData(const char *file,uint64_t *size);

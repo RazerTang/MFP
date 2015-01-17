@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5DAB85221A6ABA7D00CDDCA6 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DAB85211A6ABA7D00CDDCA6 /* libz.1.2.5.dylib */; };
 		66DBA8231A5B9522003F907C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66DBA8221A5B9522003F907C /* main.cpp */; };
 		66DBA82B1A5B9535003F907C /* Writer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66DBA8291A5B9535003F907C /* Writer.cpp */; };
 		66DBA82E1A5B9542003F907C /* Reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66DBA82C1A5B9542003F907C /* Reader.cpp */; };
@@ -25,6 +26,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5DAB85211A6ABA7D00CDDCA6 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		5DF1B63B1A6A6DA5007B34DD /* GameLayer.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = GameLayer.ccbi; sourceTree = "<group>"; };
+		5DF1B63C1A6A6DA5007B34DD /* ui.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ui.plist; sourceTree = "<group>"; };
+		5DF1B63D1A6A6DA5007B34DD /* ui.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ui.png; sourceTree = "<group>"; };
+		5DF1B63E1A6A6DA5007B34DD /* ui_click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ui_click.mp3; sourceTree = "<group>"; };
 		66DBA81F1A5B9522003F907C /* MutileFilePacker */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MutileFilePacker; sourceTree = BUILT_PRODUCTS_DIR; };
 		66DBA8221A5B9522003F907C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		66DBA8291A5B9535003F907C /* Writer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Writer.cpp; sourceTree = "<group>"; };
@@ -39,15 +45,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DAB85221A6ABA7D00CDDCA6 /* libz.1.2.5.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5DF1B63A1A6A6DA5007B34DD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5DF1B63B1A6A6DA5007B34DD /* GameLayer.ccbi */,
+				5DF1B63C1A6A6DA5007B34DD /* ui.plist */,
+				5DF1B63D1A6A6DA5007B34DD /* ui.png */,
+				5DF1B63E1A6A6DA5007B34DD /* ui_click.mp3 */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		66DBA8161A5B9522003F907C = {
 			isa = PBXGroup;
 			children = (
+				5DAB85211A6ABA7D00CDDCA6 /* libz.1.2.5.dylib */,
 				66DBA8211A5B9522003F907C /* MutileFilePacker */,
 				66DBA8201A5B9522003F907C /* Products */,
 			);
@@ -64,6 +83,7 @@
 		66DBA8211A5B9522003F907C /* MutileFilePacker */ = {
 			isa = PBXGroup;
 			children = (
+				5DF1B63A1A6A6DA5007B34DD /* Resources */,
 				66DBA8301A5BAAE4003F907C /* Constant.h */,
 				66DBA8221A5B9522003F907C /* main.cpp */,
 				66DBA8291A5B9535003F907C /* Writer.cpp */,
@@ -172,7 +192,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -207,7 +227,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 			};
@@ -246,6 +266,7 @@
 				66DBA8281A5B9522003F907C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
