@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>A7440F3D-AC91-4BD2-ADC0-B47C435E952B</string>
+	<key>IDESourceControlProjectName</key>
+	<string>MutileFilePacker</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>756CEBB2A7E6416F43CE99148A1DDB5EB2734E30</key>
+		<string>https://github.com/RazerTang/MFP.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>MutileFilePacker.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>756CEBB2A7E6416F43CE99148A1DDB5EB2734E30</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/RazerTang/MFP.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>756CEBB2A7E6416F43CE99148A1DDB5EB2734E30</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>756CEBB2A7E6416F43CE99148A1DDB5EB2734E30</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MutileFilePacker</string>
+		</dict>
+	</array>
+</dict>
+</plist>
