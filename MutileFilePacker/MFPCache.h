@@ -47,17 +47,8 @@ public:
     //add .plist .png to cache
     void addPlist(const char *file);
     
-    //add music
-    void addBackground(const char *file){}
-    
-    //add effect
-    void addEffect(const char *file){}
-    
     //get raw data
     char *getBlockData(const char *file,uint64_t *size);
-    
-    //update block file,write to local
-    bool updateBlockData(const char *file);
 };
 
 #endif /* defined(__MyGame__MFPCache__) */

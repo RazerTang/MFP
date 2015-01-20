@@ -30,11 +30,12 @@
 		5DF1B63C1A6A6DA5007B34DD /* ui.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ui.plist; sourceTree = "<group>"; };
 		5DF1B63D1A6A6DA5007B34DD /* ui.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ui.png; sourceTree = "<group>"; };
 		5DF1B63E1A6A6DA5007B34DD /* ui_click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ui_click.mp3; sourceTree = "<group>"; };
-		66DBA81F1A5B9522003F907C /* MutileFilePacker */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MutileFilePacker; sourceTree = BUILT_PRODUCTS_DIR; };
+		667D3D231A6E1F8A00047C7F /* Constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
+		66C760AF1A6E276300A337C8 /* ken.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ken.png; sourceTree = "<group>"; };
+		66DBA81F1A5B9522003F907C /* mfp */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = mfp; sourceTree = BUILT_PRODUCTS_DIR; };
 		66DBA8221A5B9522003F907C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		66DBA8291A5B9535003F907C /* Writer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Writer.cpp; sourceTree = "<group>"; };
 		66DBA82A1A5B9535003F907C /* Writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Writer.h; sourceTree = "<group>"; };
-		66DBA8301A5BAAE4003F907C /* Constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constant.h; path = ../Constant.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +53,7 @@
 		5DF1B63A1A6A6DA5007B34DD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				66C760AF1A6E276300A337C8 /* ken.png */,
 				5DF1B63B1A6A6DA5007B34DD /* GameLayer.ccbi */,
 				5DF1B63C1A6A6DA5007B34DD /* ui.plist */,
 				5DF1B63D1A6A6DA5007B34DD /* ui.png */,
@@ -72,7 +74,7 @@
 		66DBA8201A5B9522003F907C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				66DBA81F1A5B9522003F907C /* MutileFilePacker */,
+				66DBA81F1A5B9522003F907C /* mfp */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -81,10 +83,10 @@
 			isa = PBXGroup;
 			children = (
 				5DF1B63A1A6A6DA5007B34DD /* Resources */,
-				66DBA8301A5BAAE4003F907C /* Constant.h */,
 				66DBA8221A5B9522003F907C /* main.cpp */,
 				66DBA8291A5B9535003F907C /* Writer.cpp */,
 				66DBA82A1A5B9535003F907C /* Writer.h */,
+				667D3D231A6E1F8A00047C7F /* Constant.h */,
 			);
 			path = MutileFilePacker;
 			sourceTree = "<group>";
@@ -106,7 +108,7 @@
 			);
 			name = MutileFilePacker;
 			productName = MutileFilePacker;
-			productReference = 66DBA81F1A5B9522003F907C /* MutileFilePacker */;
+			productReference = 66DBA81F1A5B9522003F907C /* mfp */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -230,14 +232,14 @@
 		66DBA8271A5B9522003F907C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = mfp;
 			};
 			name = Debug;
 		};
 		66DBA8281A5B9522003F907C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = mfp;
 			};
 			name = Release;
 		};

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "66DBA81E1A5B9522003F907C"
-               BuildableName = "MutileFilePacker"
+               BuildableName = "mfp"
                BlueprintName = "MutileFilePacker"
                ReferencedContainer = "container:MutileFilePacker.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "66DBA81E1A5B9522003F907C"
-            BuildableName = "MutileFilePacker"
+            BuildableName = "mfp"
             BlueprintName = "MutileFilePacker"
             ReferencedContainer = "container:MutileFilePacker.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "66DBA81E1A5B9522003F907C"
-            BuildableName = "MutileFilePacker"
+            BuildableName = "mfp"
             BlueprintName = "MutileFilePacker"
             ReferencedContainer = "container:MutileFilePacker.xcodeproj">
          </BuildableReference>
@@ -70,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "66DBA81E1A5B9522003F907C"
-            BuildableName = "MutileFilePacker"
+            BuildableName = "mfp"
             BlueprintName = "MutileFilePacker"
             ReferencedContainer = "container:MutileFilePacker.xcodeproj">
          </BuildableReference>

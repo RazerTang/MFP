@@ -16,6 +16,7 @@
 #include "Constant.h"
 #include <assert.h>
 #include <zlib.h>
+#include<openssl/md5.h>
 
 static bool IsDir(const char *path){
      DIR *dir;
@@ -36,7 +37,9 @@ Writer::~Writer(){
 
 bool Writer::compress(const char * DestName,const char *SrcName)
 {
-    FILE * fp_in = NULL;int len = 0;char buf[16384];
+    FILE * fp_in = NULL;
+    size_t len = 0;
+    char buf[16384];
     
     bool re = true;
     
@@ -80,8 +83,13 @@ bool Writer::compress(const char * DestName,const char *SrcName)
 
 
 bool Writer::saveTo(const char *fromFileFolder,const char *toFileName){
+   
     if (!m_bFd) {
         m_bFd = fopen(toFileName, "wb+");
+    }
+    
+    if (!m_bFd) {
+        assert(0);
     }
    
     
@@ -89,14 +97,12 @@ bool Writer::saveTo(const char *fromFileFolder,const char *toFileName){
     m_FileInfo.version   = 1;
     m_FileInfo.fileCount = (unsigned int)m_fileMap.size();
     uint64_t offset = KCCP_FILEINFO_LEN +m_FileInfo.fileCount *KCCP_DATAINFO_LEN;
-    fprintf(stderr,"%lu\n",(KCCP_FILEINFO_LEN +m_FileInfo.fileCount *KCCP_DATAINFO_LEN));
-    fprintf(stderr,"%lu %lu\n",KCCP_FILEINFO_LEN,KCCP_DATAINFO_LEN);
     //write index info
     int count = 0;
     fseek(m_bFd, KCCP_FILEINFO_LEN, SEEK_SET);
     auto it = m_fileMap.begin();
     while (it != m_fileMap.end()) {
-        FILE *fd = fopen(it->first.c_str(), "rb+");
+        FILE *fd = fopen(it->first.c_str(), "r");
         printf("%s\n",it->first.c_str());
         assert(fd);
         fseek(fd, 0, SEEK_END);
@@ -116,7 +122,7 @@ bool Writer::saveTo(const char *fromFileFolder,const char *toFileName){
     if (count != m_FileInfo.fileCount) {
         assert(0);
     }
-    const int  BUFFSIZE_SIZE = 1024*1024*8;
+    const int  BUFFSIZE_SIZE = 1024*1024*6;
     //malloc 1024*1024*8 cause exec bad access
     char buff[1024*1024*6] = {0};//6mb
     auto iter = m_ccpDataInfoMap.begin();
@@ -141,6 +147,7 @@ bool Writer::saveTo(const char *fromFileFolder,const char *toFileName){
   
         ++iter;
     }
+
     
     fseek(m_bFd, 0, SEEK_SET);
     assert(sizeof(m_FileInfo)==KCCP_FILEINFO_LEN);
@@ -152,12 +159,11 @@ bool Writer::saveTo(const char *fromFileFolder,const char *toFileName){
    
     std::string zipFileName = std::string(toFileName) +".zip";
     assert(this->compress(zipFileName.c_str(),toFileName));
+    
+    //remove tmp file
+    remove(toFileName);
     return true;
     
-}
-
-bool Writer::saveToFd(const char *fileNmae,FILE *fd){
-    return true;
 }
 
 void Writer::indexFiles(const char *fromFileFolder,const char *relativePath){

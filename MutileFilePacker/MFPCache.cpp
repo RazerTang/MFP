@@ -25,7 +25,6 @@ static std::string ReplaceString(const char *src,const char *from,const char *to
 
 //往下拉找到Search Paths在里面找到Header Search Paths
 //开启编辑，并按下+然后输入${SDK_ROOT}/usr/include/libxml2
-
 using namespace cocos2d;
 
 static MFPCache *_sharedMFPCache = nullptr;
@@ -51,44 +50,33 @@ bool MFPCache::unCompress(const char * DestName,const char *SrcName)
 {
     FILE * fp_out = NULL;
     bool re = true;
-    
     gzFile in;int len = 0;char buf[16384];
-    
     in = gzopen(SrcName,"rb");
     
-    if(in == NULL)
-    {
+    if(in == NULL){
         return false;
     }
     
-    if(NULL == (fp_out = fopen(DestName,"wb")))
-    {
+    if(NULL == (fp_out = fopen(DestName,"wb"))){
         gzclose(in);
         return false;
     }
     
-    for (;;)
-    {
+    for (;;){
         len = gzread(in,buf,sizeof(buf));
-        
-        if(len < 0)
-        {
+        if(len < 0){
             re = false;
             break;
         }
         
         if(len == 0) break;
-        
-        if(fwrite(buf,1,(unsigned)len,fp_out)!=len)
-        {
+        if(fwrite(buf,1,(unsigned)len,fp_out)!=len){
             re = false;
             break;
         }
     }
-    
     fclose(fp_out);
     gzclose(in);
-    
     return re;
 }
 
@@ -98,17 +86,17 @@ void MFPCache::expand(const char *zipFile){
     std::string toPath     = FileUtils::getInstance()->getWritablePath();
     std::string newFileName= ReplaceString(zipFile, ".zip", "");
     std::string newFilePath= toPath +"/"+newFileName;
-    log("%s\n",newFilePath.c_str());
     //exist
     if (0 == access(newFilePath.c_str(), 0)) {
-        log("exist=%s",newFilePath.c_str());
+        //alread exist
     }else{
        assert(unCompress(newFilePath.c_str(), fromPath.c_str()));
     }
     
-    //open it
-    m_bFd =fopen(newFilePath.c_str(), "rb");
+    //open it,only read
+    m_bFd =fopen(newFilePath.c_str(), "r");
     if(m_bFd){
+        //index file
         ccpFileInfo fileInfo;
         memset(&fileInfo, 0, KCCP_FILEINFO_LEN);
         fread(&fileInfo, KCCP_FILEINFO_LEN, 1, m_bFd);
@@ -116,8 +104,6 @@ void MFPCache::expand(const char *zipFile){
             ccpDataInfo data;
             fread(&data, KCCP_DATAINFO_LEN, 1, m_bFd);
             m_dataMap.insert(std::make_pair(data.name, data));
-            printf("%s %llu %llu %s \n ",data.name,data.size,data.offset,data.md5);
-            
         }
     }else{
         assert(m_bFd);
@@ -172,40 +158,19 @@ void parseValueMap(ValueMap &dict){
 
 //add .plist .png to cache
 void MFPCache::addPlist(const char *file){
-//    printf("/////////////////////\n");
-//    std::string fullPath = FileUtils::getInstance()->fullPathForFilename(file);
-//    ValueMap dict = FileUtils::getInstance()->getValueMapFromFile(fullPath);
-//
-//    parseValueMap(dict);
-//  
-//    printf("/////////////////////\n");
-//    std::string plistName(file);
-//    std::string pngName;
-//    std::string::size_type   pos(0);
-//    if( (pos=plistName.find(".plist"))!=std::string::npos){
-//        pngName=plistName.replace(pos,std::string(".plist").length(),".png");
-//    }else{
-//        assert(0);
-//    }
-    
     std::string png = ReplaceString(file, ".plist", ".png");
-   
     ValueMap map;
     uint64_t size = 0;
     char *data = this->getBlockData(file,&size);
     parseXml(data,size,map);
-//    parseValueMap(map);
     addImage(png.c_str());
     Texture2D *texture= Director::getInstance()->getTextureCache()->getTextureForKey(png);
     SpriteFrameCache::getInstance()->addSpriteFramesWithDictionary(map,texture);
-
 }
-
 
 //get raw data
 char *MFPCache::getBlockData(const char *file,uint64_t *size){
-    if(m_dataMap.find(file) != m_dataMap.end())
-    {
+    if(m_dataMap.find(file) != m_dataMap.end()){
         ccpDataInfo *dataInfo = &m_dataMap.find(file)->second;
         fseek(m_bFd, dataInfo->offset , SEEK_SET);//int fseek(FILE *stream, long offset, int fromwhere);fseek 用于二进制方式打开的文件,移动文件读写指针位置.
         memset(m_buffData, 0, sizeof(m_buffData));
@@ -215,14 +180,8 @@ char *MFPCache::getBlockData(const char *file,uint64_t *size){
     return nullptr;
 }
 
-//update block file,write to local
-bool MFPCache::updateBlockData(const char *file){
-    return true;
-}
-
 #pragma mark xml parser
 void MFPCache::parseXml(char *data,uint64_t size,ValueMap &dict){
-    
     xmlDocPtr doc;
     xmlNodePtr curNode;
     doc = doc = xmlReadMemory(data, size,NULL, "UTF-8", XML_PARSE_RECOVER); // open a xml doc.
@@ -255,10 +214,8 @@ cocos2d::ValueMap MFPCache::parseDict(xmlNodePtr node){
         }else if((xmlStrcmp(curNode->name, BAD_CAST"text")) != 0){
             if ((xmlStrcmp(curNode->name, BAD_CAST"key")) == 0) {
                 key = parseKey(curNode);
-//                printf("key= %s %s\n",curNode->name,key);
             }else{
                 const char *ret = parseKey(curNode);
-//              printf("ret= %s %s\n",curNode->name,ret);
                 if (key == "rotated") {
                     if (xmlStrcmp(curNode->name, BAD_CAST"false")==0) {
                          map[key.c_str()] = Value(false);
@@ -270,9 +227,7 @@ cocos2d::ValueMap MFPCache::parseDict(xmlNodePtr node){
                 }else{
                     map[key.c_str()] = Value(ret); 
                 }
-               
             }
-            
         }
         curNode = curNode->next;
     }

@@ -25,8 +25,6 @@ public:
     ~Writer();
     bool saveTo(const char *fromFileFolder,const char *toFileName);
 private:
-    bool saveToFd(const char *fileNmae,FILE *fd);
-    
     void indexFiles(const char *fromFileFolder,const char *relativePath);
     
     bool compress(const char * DestName,const char *SrcName);
