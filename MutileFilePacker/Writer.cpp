@@ -39,7 +39,6 @@ bool Writer::saveTo(const char *fromFileFolder,const char *toFileName){
    
     
     indexFiles(fromFileFolder,"");
-    
     m_FileInfo.version   = 1;
     m_FileInfo.fileCount = (unsigned int)m_fileMap.size();
     uint64_t offset = KCCP_FILEINFO_LEN +m_FileInfo.fileCount *KCCP_DATAINFO_LEN;
@@ -59,7 +58,7 @@ bool Writer::saveTo(const char *fromFileFolder,const char *toFileName){
         int ret =fclose(fd);
         assert(ret == 0);
         //写入文件基本信息
-        ccpDataInfo data(it->second.c_str(),offset,size,"aaa");
+        ccpDataInfo data(it->second.c_str(),offset,size);
          assert(sizeof(data) == KCCP_DATAINFO_LEN);
         fwrite(&data, KCCP_DATAINFO_LEN, 1, m_bFd);
         offset += size;

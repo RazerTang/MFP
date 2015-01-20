@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		66DBA8231A5B9522003F907C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66DBA8221A5B9522003F907C /* main.cpp */; };
 		66DBA82B1A5B9535003F907C /* Writer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66DBA8291A5B9535003F907C /* Writer.cpp */; };
-		66DBA82E1A5B9542003F907C /* Reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66DBA82C1A5B9542003F907C /* Reader.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,8 +28,6 @@
 		66DBA8221A5B9522003F907C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		66DBA8291A5B9535003F907C /* Writer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Writer.cpp; sourceTree = "<group>"; };
 		66DBA82A1A5B9535003F907C /* Writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Writer.h; sourceTree = "<group>"; };
-		66DBA82C1A5B9542003F907C /* Reader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Reader.cpp; sourceTree = "<group>"; };
-		66DBA82D1A5B9542003F907C /* Reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reader.h; sourceTree = "<group>"; };
 		66DBA8301A5BAAE4003F907C /* Constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constant.h; path = ../Constant.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -68,8 +65,6 @@
 				66DBA8221A5B9522003F907C /* main.cpp */,
 				66DBA8291A5B9535003F907C /* Writer.cpp */,
 				66DBA82A1A5B9535003F907C /* Writer.h */,
-				66DBA82C1A5B9542003F907C /* Reader.cpp */,
-				66DBA82D1A5B9542003F907C /* Reader.h */,
 			);
 			path = MutileFilePacker;
 			sourceTree = "<group>";
@@ -131,7 +126,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				66DBA82B1A5B9535003F907C /* Writer.cpp in Sources */,
-				66DBA82E1A5B9542003F907C /* Reader.cpp in Sources */,
 				66DBA8231A5B9522003F907C /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -246,6 +240,7 @@
 				66DBA8281A5B9522003F907C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
